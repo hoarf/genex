@@ -1,11 +1,39 @@
 # Genex
 
-**TODO: Add description**
+Generates route files based on a domain driven spec.
+
+# Domain Specification
+
+A domain specification is a JSON file. Exemple of a simple JSON spec.
+
+```json
+{
+    "domains": [
+        {
+            "name": "HR",
+            "resources": [
+                {
+                    "methods": [
+                        "get",
+                        "post"
+                    ],
+                    "fields": [
+                        {
+                            "name": "username",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "users"
+                }
+            ],
+            "description": "The Human Resources domain"
+        }
+    ]
+}
+```
+
 
 ## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `genex` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -14,8 +42,4 @@ def deps do
   ]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/genex](https://hexdocs.pm/genex).
 
