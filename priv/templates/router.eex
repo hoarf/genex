@@ -1,0 +1,11 @@
+defmodule <%= web_namespace %>.Router do
+  use <%= web_namespace %>, :router
+
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+  scope "/api", <%= web_namespace %> do
+    pipe_through :api
+  end
+end

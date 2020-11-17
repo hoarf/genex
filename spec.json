@@ -1,0 +1,23 @@
+{
+  "domains": [
+    {
+      "description": "The Human Resources domain",
+      "resources": [
+        {
+          "name": "users",
+          "fields": [
+            {
+              "type": "string",
+              "name": "username"
+            }
+          ],
+          "methods": [
+            "get",
+            "post"
+          ]
+        }
+      ],
+      "name": "HR"
+    }
+  ]
+}
