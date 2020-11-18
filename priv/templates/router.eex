@@ -5,7 +5,12 @@ defmodule <%= web_namespace %>.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", <%= web_namespace %> do
+<%= for domain <- domains do %>
+  scope "/<%= domain.name %>", <%= web_namespace %> do
     pipe_through :api
+  <%= for resource <- domain.resources do %>
+    resources <%= "/#{resource.name}s" %>, <%= String.capitalize(resource.name) %>Controller, only: [<%= Enum.join(resource.methods, ", ") %>]
+  <% end %>
   end
+<% end %>
 end

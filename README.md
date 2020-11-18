@@ -1,6 +1,19 @@
 # Genex
 
-Generates route files based on a domain driven spec.
+Generate phoenix files based on specification.
+
+Features
+
+- [x] Generate route files
+- [ ] Generate controller files
+- [ ] Generate schema files
+- [ ] Generate view files
+
+# Example
+
+```sh
+mix gen spec.json
+```
 
 # Domain Specification
 
@@ -11,8 +24,10 @@ A domain specification is a JSON file. Exemple of a simple JSON spec.
     "domains": [
         {
             "name": "HR",
+            "description": "The Human Resources domain",
             "resources": [
                 {
+                    "name": "users",
                     "methods": [
                         "get",
                         "post"
@@ -22,11 +37,9 @@ A domain specification is a JSON file. Exemple of a simple JSON spec.
                             "name": "username",
                             "type": "string"
                         }
-                    ],
-                    "name": "users"
+                    ]
                 }
-            ],
-            "description": "The Human Resources domain"
+            ]
         }
     ]
 }
