@@ -15,6 +15,27 @@ Features
 mix gen spec.json
 ```
 
+Router:
+
+```
+defmodule App.Router do
+  use App, :router
+
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+
+  scope "/hr", App do
+    pipe_through :api
+  
+    resources /users, UserController, only: [:get, :post]
+  
+  end
+
+end
+```
+
 # Domain Specification
 
 A domain specification is a JSON file. Exemple of a simple JSON spec.
