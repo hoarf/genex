@@ -50,8 +50,8 @@ A domain specification is a JSON file. Exemple of a simple JSON spec.
                 {
                     "name": "users",
                     "methods": [
-                        "get",
-                        "post"
+                        ":get",
+                        ":post"
                     ],
                     "fields": [
                         {
