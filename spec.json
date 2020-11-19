@@ -4,16 +4,19 @@
       "description": "The Human Resources domain",
       "resources": [
         {
-          "name": "user",
+          "name": "employee",
           "fields": [
             {
               "type": "string",
-              "name": "username"
+              "name": "name"
             }
           ],
           "methods": [
             ":get",
-            ":post"
+            ":post",
+            ":index",
+            ":put",
+            ":delete"
           ]
         }
       ],

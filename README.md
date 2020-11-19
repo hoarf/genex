@@ -5,7 +5,7 @@ Generate phoenix files based on specification.
 Features
 
 - [x] Generate route files
-- [ ] Generate controller files
+- [x] Generate controller files
 - [ ] Generate schema files
 - [ ] Generate view files
 
