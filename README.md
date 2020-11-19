@@ -17,7 +17,7 @@ mix gen spec.json
 
 Router:
 
-```
+```elixir
 defmodule App.Router do
   use App, :router
 
@@ -35,6 +35,62 @@ defmodule App.Router do
 
 end
 ```
+
+Controller:
+
+```elixir
+defmodule AppWeb.EmployeeController do
+  use AppWeb, :controller
+
+  action_fallback AppWeb.FallbackController
+
+  alias App.Hr
+  alias App.Employee
+
+
+  def index(conn, _params) do
+    employees = Hr.list_employees()
+    render(conn, "index.json", employees: employees)
+  end
+
+
+
+  def show(conn, %{"id" => id}) do
+    employee = Hr.get_employee!(id)
+    render(conn, "show.json", employee: employee)
+  end
+
+
+ def create(conn, %{employee => employee_params}) do
+    with {:ok, %Employee{} = employee} <- Hr.create_employee(employee_params) do
+      conn
+      |> put_status(:created)
+      |> put_resp_header("location", Routes.Helper.employee_path(conn, :show, employee))
+      |> render("show.json", employee: employee)
+    end
+  end
+
+
+  def update(conn, %{"id" => id, employee => employee_params}) do
+    employee = Hr.get_employee!(id)
+
+    with {:ok, %Employee{} = employee} <- Hr.update_employee(employee, employee_params) do
+      render(conn, "show.json", employee: employee)
+    end
+  end
+
+
+  def delete(conn, %{"id" => id}) do
+    employee = Hr.get_employee!(id)
+
+    with {:ok, %Employee{}} <- Hr.delete_employee(employee) do
+      send_resp(conn, :no_content, "")
+    end
+  end
+
+end
+```
+
 
 # Domain Specification
 
