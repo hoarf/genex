@@ -1,0 +1,11 @@
+defmodule App.<%= schema %> do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "<%= singular %>" do
+  <%= for field <- fields do %>
+    field :<%= field.name %>, <%= field.type %>
+  <% end %>
+    timestamps()
+  end
+end

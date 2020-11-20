@@ -7,7 +7,7 @@
           "name": "employee",
           "fields": [
             {
-              "type": "string",
+              "type": ":string",
               "name": "name"
             }
           ],

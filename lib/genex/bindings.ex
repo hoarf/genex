@@ -13,4 +13,12 @@ defmodule Genex.Bindings do
       web_namespace: "AppWeb"
     ]
   end
+
+  def schema(resource) do
+    [
+      schema: String.capitalize(resource.name),
+      singular: resource.name,
+      fields: resource.fields
+    ]
+  end
 end

@@ -9,6 +9,7 @@ defmodule Mix.Tasks.Gen do
     |> Genex.Spec.decode()
     |> router()
     |> controllers()
+    |> schema()
   end
 
   defp router(spec) do
@@ -25,6 +26,17 @@ defmodule Mix.Tasks.Gen do
       resource
       |> Genex.Bindings.controller(domain)
       |> Genex.Generator.controller()
+      |> IO.puts()
+    end
+
+    spec
+  end
+
+  defp schema(spec) do
+    for domain <- spec.domains, resource <- domain.resources do
+      resource
+      |> Genex.Bindings.schema()
+      |> Genex.Generator.schema()
       |> IO.puts()
     end
 

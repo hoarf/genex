@@ -6,7 +6,8 @@ Features
 
 - [x] Generate route files
 - [x] Generate controller files
-- [ ] Generate schema files
+- [x] Generate schema files
+  - [ ] Support associations
 - [ ] Generate view files
 
 # Example
@@ -36,6 +37,22 @@ defmodule App.Router do
 end
 ```
 
+Schema: 
+
+```elixir
+defmodule App.Employee do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "employee" do
+  
+    field :name, :string
+  
+    timestamps()
+  end
+end
+```
+
 Controller:
 
 ```elixir
@@ -52,8 +69,6 @@ defmodule AppWeb.EmployeeController do
     employees = Hr.list_employees()
     render(conn, "index.json", employees: employees)
   end
-
-
 
   def show(conn, %{"id" => id}) do
     employee = Hr.get_employee!(id)
@@ -91,34 +106,36 @@ defmodule AppWeb.EmployeeController do
 end
 ```
 
-
 # Domain Specification
 
 A domain specification is a JSON file. Exemple of a simple JSON spec.
 
 ```json
 {
-    "domains": [
+  "domains": [
+    {
+      "description": "The Human Resources domain",
+      "resources": [
         {
-            "name": "HR",
-            "description": "The Human Resources domain",
-            "resources": [
-                {
-                    "name": "users",
-                    "methods": [
-                        ":get",
-                        ":post"
-                    ],
-                    "fields": [
-                        {
-                            "name": "username",
-                            "type": "string"
-                        }
-                    ]
-                }
-            ]
+          "name": "employee",
+          "fields": [
+            {
+              "type": ":string",
+              "name": "name"
+            }
+          ],
+          "methods": [
+            ":get",
+            ":post",
+            ":index",
+            ":put",
+            ":delete"
+          ]
         }
-    ]
+      ],
+      "name": "hr"
+    }
+  ]
 }
 ```
 
